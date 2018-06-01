@@ -55,9 +55,10 @@ class JumpSearch {
     }
     jumps(){
         let found=false;
+        /*
         for(var i=0;i<this.len;i+=this.shifts){
             if((i+this.shifts)<this.len)
-                this.linesShow(this.width*i,this.height,this.width*i + this.shifts);
+                setTimeout(this.linesShow(this.width*i,this.height,this.width*i + this.shifts).bind(this),1000);
             if (this.search <= this.array[i]) {
                 if (this.search==this.array[i]) {
                     this.position = i;found = true;break;
@@ -74,8 +75,22 @@ class JumpSearch {
         }
         if (found==false) {
             this.position = -1
-        }
+        }*/
+        var i = 1;
+        this.linesShow(this.width*i,this.height,this.width*i + this.shifts*this.width)
+        //var x = this.loopRun();
+
         return this.position;
+
+    }
+    loopRun(index,shift){
+        if (this.search==this.array[index]) {
+            this.position = index;
+            return this.position;
+        }
+
+
+
     }
 }
 

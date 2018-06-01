@@ -39,14 +39,23 @@ class jump_c_visualisation extends JumpSearch {
             .attr('x',x).attr('y',y).attr('fill','none').attr('stroke','red').attr('stroke-width','2');
         this.group.append('text').attr('x',x + 15).attr('y',1.6*y).text(t).attr('fill','black').attr('id',this.id_arrayNumbers);
     }
-    linesShow(x1,y1,x2,r){
-        var line_length1 = 10;
+    linesShow(x1,y1,x2){
+        var line_length1 = 30;
+        x1-=(this.width/2);
+        x2-=(this.width/2);
+        y1 += this.height;
+        // arrow making
+        var x0=x2,y0=y1+20,y00=y1+5,x00=x2+5,x000=x2-5;
 
-        this.group.append('line').attr('x1',x1).attr('y1',y1+2).attr('x2',x1)
-            .attr('y2',y1+line_length1).attr('fill','black'); // line1
-        this.group.append('line').attr('x1',x1).attr('y1',y1+line_length1).attr('x2',x2).attr('y2',y1+line_length1)
-            .attr('fill','black'); // line1
-        this.group.append('line').attr('x1',x2).attr('y1',y1+2).attr('x2',x2).attr('y2',y1+2).attr('fill','black'); // line1
+        console.log('reached lines ' + x1 +' ' + y1+ ' ' + x2)
+        this.group.append('line').attr('x1',x1).attr('y1',y1+20).attr('x2',x1)
+            .attr('y2',y1+line_length1+20).style('stroke','black').attr('stroke-width','4'); ; // line1
+        this.group.append('line').attr('x1',x1).attr('y1',y1+line_length1+20).attr('x2',x2).attr('y2',y1+line_length1+20)
+            .style('stroke','black').attr('stroke-width','4'); // line1
+        this.group.append('line').attr('x1',x2).attr('y1',y1+20+line_length1).attr('x2',x2).attr('y2',y1+20)
+            .style('stroke','black').attr('stroke-width','4'); ; // line1
+        this.group.append('line').attr('x1',x0).attr('y1',y00).attr('y2',y0).attr('x2',x00).attr('stroke-width','4').style('stroke','black');
+        this.group.append('line').attr('x1',x0).attr('y1',y00).attr('y2',y0).attr('x2',x000).attr('stroke-width','4').style('stroke','black');
     }
 }
 
