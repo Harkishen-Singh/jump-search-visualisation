@@ -1,4 +1,5 @@
 
+var ch=1;
 class JumpSearch {
     constructor(arr,l,x){
         this.array = arr;
@@ -7,7 +8,7 @@ class JumpSearch {
         this.position = 0;
         this.width = 50;//rect width
         this.height = 50;//rect height
-        this.id_arrayNumbers = 0;this.present=0;
+        this.id_arrayNumbers = 0;this.present=0;this.idss='aa';
         //this.processes();
         console.log('Got inside root class');
     }
@@ -98,6 +99,7 @@ class JumpSearch {
         console.log('iiiii' + a+b)
     }
     loopRun(index,shift){
+        
         if (this.search==this.array[index]) {
             this.position = index;
             return this.position;
@@ -105,11 +107,26 @@ class JumpSearch {
         //index++;
         //this.present++;
         //index = this.present;
-        var aa = this.linesShow(this.width*index,this.height,this.width*index + this.shifts*this.width);
-        console.log('aa is '+aa);
-        this.present += this.shifts;console.log('this.present is '+this.present);
+        
+        //console.log('aa is '+aa);
 
-        setTimeout(this.loopRun.bind(this),2000, this.present, this.shifts);
+        this.present += this.shifts;console.log('this.present is '+this.present);
+        if((this.present)<this.len){
+            this.clearSVGLines();
+            var aa = this.linesShow(this.width*index,this.height,this.width*index + this.shifts*this.width);
+            if(ch < this.checksEfficiency){
+                setTimeout(this.loopRun.bind(this),2000, this.present, this.shifts);ch++;console.log('works!')
+            }
+            else{
+                this.group.append('text').text('Reached Last').attr('x',this.width*index)
+                .attr('y',this.width*index + this.shifts*this.width).attr('fill','red');
+            }
+        }
+        else{
+            //this.loopRun(this.present,this.shifts);
+            this.group.append('text').text('Reached Last').attr('x',this.width*index)
+                .attr('y',this.height*3).attr('fill','red');
+        }
     }
 }
 
