@@ -5,6 +5,7 @@ class jump_c_visualisation extends JumpSearch {
         this.svg = d3.select('body').append('svg').attr('height','100%')
             .attr('width','100%');
         this.count = 0;
+        this.counter = 0;
         this.group = this.svg.append('g').attr('transform','translate(20,0)');
     }
     idGenerator(){
@@ -26,10 +27,13 @@ class jump_c_visualisation extends JumpSearch {
                     }
     }
     clearSVG(){
-        
+        for(var o=0;o<this.len;o++)
+            d3.select('#'+this.id_arrayNumbers.toString()).remove();
     }
     arrayVisCreation(x,y,t){
-        this.id_arrayNumbers = this.idGenerator();
+        if(this.counter == 0){
+            this.id_arrayNumbers ='ids'+ this.idGenerator();this.counter++;
+        }
         console.log('Id : '+this.id_arrayNumbers);
         this.group.append('rect').attr('width',this.width).attr('height',this.height)
             .attr('x',x).attr('y',y).attr('fill','none').attr('stroke','red').attr('stroke-width','2');
