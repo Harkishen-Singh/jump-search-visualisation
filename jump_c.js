@@ -45,17 +45,19 @@ class jump_c_visualisation extends JumpSearch {
         x2-=(this.width/2);
         y1 += this.height;
         // arrow making
-        var x0=x2,y0=y1+20,y00=y1+5,x00=x2+5,x000=x2-5;
+        var x0=x2,y0=y1+20,y00=y1+5,x00=x2+10,x000=x2-10;
 
         console.log('reached lines ' + x1 +' ' + y1+ ' ' + x2)
         this.group.append('line').attr('x1',x1).attr('y1',y1+20).attr('x2',x1)
-            .attr('y2',y1+line_length1+20).style('stroke','black').attr('stroke-width','4'); ; // line1
+            .attr('y2',y1+line_length1+20).style('stroke','black').attr('stroke-width','2'); ; // line1
         this.group.append('line').attr('x1',x1).attr('y1',y1+line_length1+20).attr('x2',x2).attr('y2',y1+line_length1+20)
-            .style('stroke','black').attr('stroke-width','4'); // line1
+            .style('stroke','black').attr('stroke-width','2'); // line1
         this.group.append('line').attr('x1',x2).attr('y1',y1+20+line_length1).attr('x2',x2).attr('y2',y1+20)
-            .style('stroke','black').attr('stroke-width','4'); ; // line1
-        this.group.append('line').attr('x1',x0).attr('y1',y00).attr('y2',y0).attr('x2',x00).attr('stroke-width','4').style('stroke','black');
-        this.group.append('line').attr('x1',x0).attr('y1',y00).attr('y2',y0).attr('x2',x000).attr('stroke-width','4').style('stroke','black');
+            .style('stroke','black').attr('stroke-width','2'); ; // line1
+        this.group.append('line').attr('x1',x0).attr('y1',y0).attr('y2',y0+10).attr('x2',x00).attr('stroke-width','2').style('stroke','black');
+        this.group.append('line').attr('x1',x0).attr('y1',y0).attr('y2',y0+10).attr('x2',x000).attr('stroke-width','2')
+        .style('stroke','black');
+        return true;
     }
 }
 

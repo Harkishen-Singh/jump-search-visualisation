@@ -7,7 +7,7 @@ class JumpSearch {
         this.position = 0;
         this.width = 50;//rect width
         this.height = 50;//rect height
-        this.id_arrayNumbers = 0;
+        this.id_arrayNumbers = 0;this.present=0;
         //this.processes();
         console.log('Got inside root class');
     }
@@ -76,21 +76,40 @@ class JumpSearch {
         if (found==false) {
             this.position = -1
         }*/
-        var i = 1;
-        this.linesShow(this.width*i,this.height,this.width*i + this.shifts*this.width)
-        //var x = this.loopRun();
 
+
+
+
+
+
+
+        var i = 0,aa=false,a;
+        this.present = 1;
+        
+        this.loopRun(this.present,this.shifts);
+        /*setInterval(function(){
+            this.present= this.present + this.shifts;
+        },2000);*/
+        
         return this.position;
 
+    }
+    iiii(a,b){
+        console.log('iiiii' + a+b)
     }
     loopRun(index,shift){
         if (this.search==this.array[index]) {
             this.position = index;
             return this.position;
         }
+        //index++;
+        //this.present++;
+        //index = this.present;
+        var aa = this.linesShow(this.width*index,this.height,this.width*index + this.shifts*this.width);
+        console.log('aa is '+aa);
+        this.present += this.shifts;console.log('this.present is '+this.present);
 
-
-
+        setTimeout(this.loopRun.bind(this),2000, this.present, this.shifts);
     }
 }
 
