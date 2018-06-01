@@ -38,9 +38,12 @@ class JumpSearch {
         for (var i = 0; i < this.len; i++) {
             for (var j = 0; j < this.len-1 ; j++) {
                 if(this.array[j]>this.array[j+1]){
-                    this.array[j] += this.array[j+1];
+                    /*this.array[j] += this.array[j+1];
                     this.array[j+1] = this.array[j] - this.array[j+1];
-                    this.array[j] = this.array[j] - this.array[j+1]; 
+                    this.array[j] = this.array[j] - this.array[j+1]; */
+                    let temp = this.array[j];
+                    this.array[j] = this.array[j+1];
+                    this.array[j+1] = temp;
                 }
             }
         }

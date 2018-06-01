@@ -12,6 +12,9 @@ class jump_c_visualisation extends JumpSearch {
         for (var i = 0; i <this.len ; i++) {
             console.log(this.width+'  '+this.height);
             this.arrayVisCreation(this.width*i,this.height,this.array[i].toString());
+            if (i==this.len -1) {
+                this.group.append('text').text('(Sorted)').attr('x',this.width*(i+2)).attr('y',this.height*1.5).attr('fill','red');
+            }
         }
     }
 
@@ -21,16 +24,23 @@ class jump_c_visualisation extends JumpSearch {
         this.group.append('text').attr('x',x + 15).attr('y',1.6*y).text(t).attr('fill','black');
     }
 }
+var value;
 function kickStart(){
     var value = document.forms['askingArray']['inputElements'].value;
-    console.log('The entered values are : '+ value);
+    console.log(value)
+    var b = value.split(',');
+    var arr = [];
+    for(var i=0;i<b.length;i++){
+        arr.push(parseInt(b[i]));
+    }
+    console.log('The entered values are : '+ arr);
+    var toBeSearch = 6;
+var o = new jump_c_visualisation(arr,arr.length,toBeSearch);
+o.arrayCreator();
 }
 
 
 
 
 
-values = [23,1,65,34,98,6,243,23,45,56,456,12,123];
-var toBeSearch = 6;
-//var o = new jump_c_visualisation(values,values.length,toBeSearch);
-//o.arrayCreator();
+//values = [23,1,65,34,98,6,243,23,45,56,456,12,123];
