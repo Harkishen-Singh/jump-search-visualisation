@@ -5,9 +5,13 @@ class JumpSearch {
         this.len = l;
         this.search = x;
         this.position = 0;
-        this.processes();
+        this.width = 50;//rect width
+        this.height = 50;//rect height
+        this.id_arrayNumbers = 0;
+        //this.processes();
         console.log('Got inside root class');
     }
+    
     processes(){
          this.shifts =Math.floor(Math.pow(this.len,0.5));var cc;
          this.checksEfficiency = this.len / this.shifts ;
@@ -22,6 +26,7 @@ class JumpSearch {
             console.log("Element found at index : "+this.position);
          else
             console.log('Element not found !');
+        this.arrayCreator();
     }
     isSorted(arr){
         var is = false;
@@ -51,6 +56,8 @@ class JumpSearch {
     jumps(){
         let found=false;
         for(var i=0;i<this.len;i+=this.shifts){
+            if((i+this.shifts)<this.len)
+                this.linesShow(this.width*i,this.height,this.width*i + this.shifts);
             if (this.search <= this.array[i]) {
                 if (this.search==this.array[i]) {
                     this.position = i;found = true;break;
