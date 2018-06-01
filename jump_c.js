@@ -24,6 +24,19 @@ class jump_c_visualisation extends JumpSearch {
         this.group.append('text').attr('x',x + 15).attr('y',1.6*y).text(t).attr('fill','black');
     }
 }
+
+$(document).ready(
+    function(){
+        $('#searchShow').hide();
+        $('#searchclick').click(function() {
+            $('#searchShow').show(1000);
+        })
+    }
+    );
+
+
+
+
 var value;
 function kickStart(){
     var value = document.forms['askingArray']['inputElements'].value;

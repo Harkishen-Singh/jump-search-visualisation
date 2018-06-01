@@ -4,6 +4,10 @@
 	<title>Jump Search Visualisation</title>
 	<script type="text/javascript" src="./d3.v4.js"></script>
 	<link rel="stylesheet" type="text/css" href="./style.css">
+	<script src="https://www.google.com/jsapi"></script>
+	<script>
+		google.load('jquery', '1.3.1');
+	</script>
 </head>
 <body>
 	<h1>Jump Search</h1>
@@ -11,7 +15,12 @@
 		<div class='ask'>
 			Elements seperated with (',') : <input type="text" name="inputElements" maxlength="100" size="90" style="font-size: 20px;" /> 
 		</div>
-		<input type="button" name="" value="START" class='submitStyle' style="" onclick="kickStart();">
+		<input type="button" name="" value="START" id='searchclick' class='submitStyle' style="" onclick="kickStart();">
+		<div id='searchShow'>
+			Search (only single element) : <input type="text" name="searchElement" style="margin-top: 20px;font-size: 20px;"><br/>
+			<input type="button" name="" value="SEARCH" class='submitStyle' style="" onclick="">
+		</div>
+
 	</form>
 	<script type="text/javascript" src="./jump.js"></script>
 	<script type="text/javascript" src="./jump_c.js"></script>
