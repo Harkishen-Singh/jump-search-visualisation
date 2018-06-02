@@ -1,11 +1,12 @@
 class jump_c_visualisation extends JumpSearch {
     constructor(arr,l,s){
+        console.log('search2 is '+s);
         super(arr,l,s);
         this.state = 'initial';
         this.svg = d3.select('body').append('svg').attr('height','100%')
             .attr('width','100%');
         this.count = 0;
-        this.counter = 0;this.counter2= 0;
+        this.counter = 0;this.counter2= 0;this.idssa='add';
         this.group = this.svg.append('g').attr('transform','translate(20,0)');
     }
     idGenerator(){
@@ -62,14 +63,25 @@ class jump_c_visualisation extends JumpSearch {
         this.group.append('line').attr('x1',x1).attr('y1',y1+20).attr('x2',x1)
             .attr('y2',y1+line_length1+20).style('stroke','black').attr('stroke-width','2').attr('id',this.idss);  // line1
         this.group.append('line').attr('x1',x1).attr('y1',y1+line_length1+20).attr('x2',x2).attr('y2',y1+line_length1+20)
-            .style('stroke','black').attr('stroke-width','2').attr('id',this.idss); // line1
+            .style('stroke','black').attr('stroke-width','2').attr('id',this.idss); // line2
         this.group.append('line').attr('x1',x2).attr('y1',y1+20+line_length1).attr('x2',x2).attr('y2',y1+20)
-            .style('stroke','black').attr('stroke-width','2').attr('id',this.idss);// line1
+            .style('stroke','black').attr('stroke-width','2').attr('id',this.idss);// line3
         this.group.append('line').attr('x1',x0).attr('y1',y0).attr('y2',y0+10).attr('x2',x00).attr('stroke-width','2')
         .style('stroke','black').attr('id',this.idss);
         this.group.append('line').attr('x1',x0).attr('y1',y0).attr('y2',y0+10).attr('x2',x000).attr('stroke-width','2')
         .style('stroke','black').attr('id',this.idss);
         return true;
+    }
+    linesSingleShow(x1,y1,x2){
+        var line_length1 = 30;
+        x1-=(this.width/2);
+        x2-=(this.width/2);
+        this.group.append('line').attr('x1',x1).attr('y1',y1+20).attr('x2',x1)
+            .attr('y2',y1+line_length1+20).style('stroke','black').attr('stroke-width','2').attr('id',this.idssa);
+        this.group.append('line').attr('x1',x1).attr('y1',y1+line_length1+20).attr('x2',x2).attr('y2',y1+line_length1+20)
+            .style('stroke','black').attr('stroke-width','2').attr('id',this.idss);
+        this.group.append('line').attr('x1',x2).attr('y1',y1+20+line_length1).attr('x2',x2).attr('y2',y1+20)
+            .style('stroke','black').attr('stroke-width','2').attr('id',this.idss);
     }
 }
 
@@ -108,7 +120,7 @@ function kickStart(){
         arr.push(parseInt(b[i]));
     }
     console.log('The entered values are : '+ arr);
-    var toBeSearch = parseInt(document.forms['askingArray']['searchElement']);
+    var toBeSearch = parseInt(document.forms['askingArray']['searchElement'].value);
 var o = new jump_c_visualisation(arr,arr.length,toBeSearch);
 o.arrayCreator();
 }

@@ -10,7 +10,8 @@ class JumpSearch {
         this.height = 50;//rect height
         this.id_arrayNumbers = 0;this.present=0;this.idss='aa';
         //this.processes();
-        console.log('Got inside root class');
+        console.log('search is '+this.search);
+        this.singleLoopcheck=false;
     }
     
     processes(){
@@ -77,13 +78,6 @@ class JumpSearch {
         if (found==false) {
             this.position = -1
         }*/
-
-
-
-
-
-
-
         var i = 0,aa=false,a;
         this.present = 1;
         
@@ -100,8 +94,8 @@ class JumpSearch {
     }
     loopRun(index,shift){
         
-        if (this.search==this.array[index]) {
-            this.position = index;
+        if (this.search==this.array[index-1]) {
+            this.position = index-1;
             return this.position;
         }
         //index++;
@@ -112,6 +106,12 @@ class JumpSearch {
 
         this.present += this.shifts;console.log('this.present is '+this.present);
         if((this.present)<=this.len){
+            console.log('this.present is : ********** '+this.present +' and array ' + this.array[this.present-1] + ' search '+this.search);
+            if (this.array[this.present-1]>this.search) {
+                this.loopSingleStep(index,-1);
+                console.log('present exceeded search');
+            }
+            else{
             this.clearSVGLines();
             var aa = this.linesShow(this.width*index,this.height,this.width*index + this.shifts*this.width);
             if(ch < this.checksEfficiency){
@@ -121,12 +121,24 @@ class JumpSearch {
                 this.group.append('text').text('Reached Last').attr('x',this.width*index)
                 .attr('y',this.width*index + this.shifts*this.width).attr('fill','red');
             }
+            }
         }
         else{
             //this.loopRun(this.present,this.shifts);
             this.group.append('text').text('Reached Last').attr('x',this.width*index)
                 .attr('y',this.height*3).attr('fill','red');
+                this.loopSingleStep(index,1);
         }
+    }
+    loopSingleStep(index,step){
+        if (this.array[index-1]==this.step) {
+            this.position = index-1;
+            this.singleLoopcheck = true;
+        }
+        this.linesSingleShow(this.width*index,this.height,this.width*index + step*this.width);
+        index = index + step;
+        if(this.singleLoopcheck==false)
+            setTimeout(this.loopSingleStep.bind(this),2000,index,step);
     }
 }
 
