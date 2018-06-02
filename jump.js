@@ -129,11 +129,15 @@ class JumpSearch {
             //this.loopRun(this.present,this.shifts);
             this.group.append('text').text('Reached Last').attr('x',this.width*index)
                 .attr('y',this.height*3).attr('fill','red');
-                this.loopSingleStep(index,1);
+                if(index==this.len-2)
+                    this.loopSingleStep(index,-1);
+                else
+                    this.loopSingleStep(index,-1);
+
         }
     }
     loopSingleStep(index,step){
-        if (this.array[index-1]==this.step) {
+        if (this.array[index-1]==this.search) {
             this.position = index-1;
             this.singleLoopcheck = true;
         }
