@@ -137,8 +137,9 @@ class JumpSearch {
         }
     }
     loopSingleStep(index,step){
-        if (this.array[index-1]==this.search) {
+        if (this.array[index-2]==this.search) {
             this.position = index-1;
+            console.log('ELEMENT FOUND PART 2 '+this.position);
             this.singleLoopcheck = true;
         }
         this.linesSingleShow(this.width*index,this.height,this.width*index + step*this.width);
