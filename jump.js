@@ -97,6 +97,7 @@ class JumpSearch {
         if (this.search==this.array[index-1]) {
             this.position = index-1;
             console.log('ELEMENT FOUND at '+this.position );
+            this.stopping(this.position+1)
 
             return this.position;
         }
@@ -150,6 +151,7 @@ class JumpSearch {
         exit;
     }
     loopSingleStep2(index,step){
+        console.log('Entered loop22')
         if (this.array[index-1]==this.search) {
             this.position = index-1;
             console.log('ELEMENT FOUND PART 2 '+this.position);
@@ -158,9 +160,10 @@ class JumpSearch {
         }
         this.linesSingleShow(this.width*index,this.height,this.width*index + step*this.width);
         index = index + step;
-        if (index-1 == this.len) {console.log('Single Step exceeded length');}
+        console.log('index is '+index);
+        if (index-1 >= this.len) {console.log('Single Step2 exceeded length');}
         if(this.singleLoopcheck==false){
-            setTimeout(this.loopSingleStep.bind(this),2000,index,step);
+            setTimeout(this.loopSingleStep2.bind(this),2000,index,step);
         }
     }
     loopSingleStep(index,step){
@@ -170,16 +173,17 @@ class JumpSearch {
             this.singleLoopcheck = true;this.stopping(index);
             return true;
         }var dontEnter = false;
-        
-        
         if (index == this.len) {
-            console.log('Single Step exceeded length');  this.loopSingleStep2(this.universalIndex,-1);
+            console.log('Single Step exceeded length');  this.loopSingleStep2(index,-1);
             dontEnter=true;
         }
+        
+        
         if(this.singleLoopcheck==false && dontEnter==false){
             this.linesSingleShow(this.width*index,this.height,this.width*index + step*this.width);index = index + step;
             setTimeout(this.loopSingleStep.bind(this),2000,index,step);
         }
+
     }
 }
 
