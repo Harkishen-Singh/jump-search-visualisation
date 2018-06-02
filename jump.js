@@ -111,7 +111,7 @@ class JumpSearch {
         //console.log('aa is '+aa);
 
         this.present += this.shifts;console.log('this.present is '+this.present);
-        if((this.present)<this.len){
+        if((this.present)<=this.len){
             this.clearSVGLines();
             var aa = this.linesShow(this.width*index,this.height,this.width*index + this.shifts*this.width);
             if(ch < this.checksEfficiency){
