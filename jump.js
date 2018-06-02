@@ -96,6 +96,8 @@ class JumpSearch {
         
         if (this.search==this.array[index-1]) {
             this.position = index-1;
+            console.log('ELEMENT FOUND at '+this.position );
+
             return this.position;
         }
         //index++;
@@ -107,7 +109,7 @@ class JumpSearch {
         this.present += this.shifts;console.log('this.present is '+this.present);
         if((this.present)<=this.len){
             console.log('this.present is : ********** '+this.present +' and array ' + this.array[this.present-1] + ' search '+this.search);
-            if (this.array[this.present-1]>this.search) {
+            if (this.array[this.present-2]>this.search) {
                 this.loopSingleStep(index,-1);
                 console.log('present exceeded search');
             }

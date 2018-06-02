@@ -76,12 +76,21 @@ class jump_c_visualisation extends JumpSearch {
         var line_length1 = 30;
         x1-=(this.width/2);
         x2-=(this.width/2);
-        this.group.append('line').attr('x1',x1).attr('y1',y1+20).attr('x2',x1)
-            .attr('y2',y1+line_length1+20).style('stroke','black').attr('stroke-width','2').attr('id',this.idssa);
-        this.group.append('line').attr('x1',x1).attr('y1',y1+line_length1+20).attr('x2',x2).attr('y2',y1+line_length1+20)
+        this.group.append('line').attr('x1',x1).attr('y1',y1+15-this.height).attr('x2',x1)
+            .attr('y2',y1+line_length1+15-this.height).style('stroke','black').attr('stroke-width','2').attr('id',this.idssa);
+        this.group.append('line').attr('x1',x1).attr('y1',y1+15-(this.height)).attr('x2',x2).attr('y2',y1+15-(this.height))
             .style('stroke','black').attr('stroke-width','2').attr('id',this.idss);
-        this.group.append('line').attr('x1',x2).attr('y1',y1+20+line_length1).attr('x2',x2).attr('y2',y1+20)
+        this.group.append('line').attr('x1',x2).attr('y1',y1+15+line_length1-this.height).attr('x2',x2).attr('y2',y1+15-this.height)
             .style('stroke','black').attr('stroke-width','2').attr('id',this.idss);
+
+        this.group.append('line').attr('x2',x2+10).attr('y1',y1-5).attr('y2',y1-15)
+            .attr('x1',x2)
+            .attr('stroke-width','2')
+            .style('stroke','black').attr('id',this.idss);
+        this.group.append('line').attr('x2',x2-10).attr('y1',y1-5).attr('y2',y1-15)
+            .attr('x1',x2)
+            .attr('stroke-width','2')
+            .style('stroke','black').attr('id',this.idss);
     }
 }
 
