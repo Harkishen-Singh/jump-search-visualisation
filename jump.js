@@ -143,14 +143,17 @@ class JumpSearch {
 
         }
     }
-    stopping(){
+    stopping(i){
+        this.group.append('rect').attr('width',this.width+20).attr('height',this.height+20)
+            .attr('x',this.width*(i-1)-10).attr('y',this.height-10).attr('fill','none')
+            .attr('stroke','orange').attr('stroke-width','4');
         exit;
     }
     loopSingleStep2(index,step){
         if (this.array[index-1]==this.search) {
             this.position = index-1;
             console.log('ELEMENT FOUND PART 2 '+this.position);
-            this.singleLoopcheck = true;this.stopping();
+            this.singleLoopcheck = true;this.stopping(index);
             return true;
         }
         this.linesSingleShow(this.width*index,this.height,this.width*index + step*this.width);
@@ -164,13 +167,17 @@ class JumpSearch {
         if (this.array[index-1]==this.search) {
             this.position = index-1;
             console.log('ELEMENT FOUND PART 2 '+this.position);
-            this.singleLoopcheck = true;this.stopping();
+            this.singleLoopcheck = true;this.stopping(index);
             return true;
         }var dontEnter = false;
-        this.linesSingleShow(this.width*index,this.height,this.width*index + step*this.width);
-        index = index + step;
-        if (index == this.len) {console.log('Single Step exceeded length');  this.loopSingleStep2(this.universalIndex,-1);dontEnter=true;}
+        
+        
+        if (index == this.len) {
+            console.log('Single Step exceeded length');  this.loopSingleStep2(this.universalIndex,-1);
+            dontEnter=true;
+        }
         if(this.singleLoopcheck==false && dontEnter==false){
+            this.linesSingleShow(this.width*index,this.height,this.width*index + step*this.width);index = index + step;
             setTimeout(this.loopSingleStep.bind(this),2000,index,step);
         }
     }
