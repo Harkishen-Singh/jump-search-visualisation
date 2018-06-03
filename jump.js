@@ -158,6 +158,7 @@ class JumpSearch {
             this.singleLoopcheck = true;this.stopping(index);
             return true;
         }
+        this.clearSVGSubLines();
         this.linesSingleShow(this.width*index,this.height,this.width*index + step*this.width);
         index = index + step;
         console.log('index is '+index);
@@ -180,6 +181,7 @@ class JumpSearch {
         
         
         if(this.singleLoopcheck==false && dontEnter==false){
+            this.clearSVGSubLines();
             this.linesSingleShow(this.width*index,this.height,this.width*index + step*this.width);index = index + step;
             setTimeout(this.loopSingleStep.bind(this),2000,index,step);
         }

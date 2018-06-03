@@ -1,9 +1,10 @@
+var ch2 = 0;
 class jump_c_visualisation extends JumpSearch {
     constructor(arr,l,s){
         console.log('search2 is '+s);
         super(arr,l,s);
         this.state = 'initial';
-        this.svg = d3.select('body').append('svg').attr('height','100%')
+        this.svg = d3.select('#vis').append('svg').attr('height','100%')
             .attr('width','100%');
         this.count = 0;
         this.counter = 0;this.counter2= 0;this.idssa='add';
@@ -17,8 +18,13 @@ class jump_c_visualisation extends JumpSearch {
             console.log(this.width+'  '+this.height);
             this.arrayVisCreation(this.width*i,this.height,this.array[i].toString());
             if (i==this.len -1) {
-                this.group.append('text').text('(Sorted)').attr('x',this.width*(i+2)).attr('y',this.height*1.5)
-                .attr('fill','red');
+                if(ch2>0){
+                    ch2++;
+                    this.group.append('text').text('(Sorted)').attr('x',this.width*(i+2)).attr('y',this.height*1.5)
+                    .attr('fill','red');
+                }
+                else
+                    ch2++;
             }
         }
         if(this.count==0){
@@ -37,6 +43,12 @@ class jump_c_visualisation extends JumpSearch {
             d3.select('#'+this.idss.toString()).remove();
         }
     }
+    clearSVGSubLines(){
+        for(var o=0;o<10;o++){
+            console.log('id was #'+this.idssa.toString());
+            d3.select('#'+this.idssa.toString()).remove();
+        }
+    }
     arrayVisCreation(x,y,t){
         if(this.counter == 0){
             this.id_arrayNumbers ='ids'+ this.idGenerator();this.counter++;
@@ -44,7 +56,9 @@ class jump_c_visualisation extends JumpSearch {
         console.log('Id : '+this.id_arrayNumbers);
         this.group.append('rect').attr('width',this.width).attr('height',this.height)
             .attr('x',x).attr('y',y).attr('fill','none').attr('stroke','red').attr('stroke-width','2');
-        this.group.append('text').attr('x',x + 15).attr('y',1.6*y).text(t).attr('fill','black').attr('id',this.id_arrayNumbers);
+
+            this.group.append('text').attr('x',x + 15).attr('y',1.6*y).text(t).attr('fill','black').attr('id',this.id_arrayNumbers);
+        
     }
     linesShow(x1,y1,x2){
         var line_length1 = 30;
@@ -77,7 +91,7 @@ class jump_c_visualisation extends JumpSearch {
         x1-=(this.width/2);
         x2-=(this.width/2);
         this.group.append('line').attr('x1',x1).attr('y1',y1+15-this.height).attr('x2',x1)
-            .attr('y2',y1+line_length1+15-this.height).style('stroke','black').attr('stroke-width','2').attr('id',this.idssa);
+            .attr('y2',y1+line_length1+15-this.height).style('stroke','black').attr('stroke-width','2').attr('id',this.idss);
         this.group.append('line').attr('x1',x1).attr('y1',y1+15-(this.height)).attr('x2',x2).attr('y2',y1+15-(this.height))
             .style('stroke','black').attr('stroke-width','2').attr('id',this.idss);
         this.group.append('line').attr('x1',x2).attr('y1',y1+15+line_length1-this.height).attr('x2',x2).attr('y2',y1+15-this.height)
@@ -86,11 +100,11 @@ class jump_c_visualisation extends JumpSearch {
         this.group.append('line').attr('x2',x2+10).attr('y1',y1-5).attr('y2',y1-15)
             .attr('x1',x2)
             .attr('stroke-width','2')
-            .style('stroke','black').attr('id',this.idss);
+            .style('stroke','black').attr('id',this.idssa);
         this.group.append('line').attr('x2',x2-10).attr('y1',y1-5).attr('y2',y1-15)
             .attr('x1',x2)
             .attr('stroke-width','2')
-            .style('stroke','black').attr('id',this.idss);
+            .style('stroke','black').attr('id',this.idssa);
     }
 }
 

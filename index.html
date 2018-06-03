@@ -11,17 +11,33 @@
 </head>
 <body>
 	<h1>Jump Search</h1>
+	<p style="padding: 5px 20px 0px 20px;">Like Binary Search, Jump Search is a searching algorithm for sorted arrays. The basic idea is to check fewer elements (than linear search) by jumping ahead by fixed steps or skipping some elements in place of searching all elements.<br/><br/></p>
+		<h2 style="color: green;"><u>Visualization</u></h2>
 	<form name="askingArray" style="margin-left: 20px;">
 		<div class='ask'>
 			Elements seperated with (',') : ( Eg: 34,54,23,45,23,12,76,1,999 ) <input type="text" name="inputElements" maxlength="100" size="90" style="font-size: 20px;" /> 
 		</div>
 		<input type="button" name="" value="START" id='searchclick' class='submitStyle' style="" >
+		<input type="button" name="" value="RESTART" id='reload' class='submitStyle' style="" onclick="location.reload();" >
 		<div id='searchShow'>
 			Search (only single element) : <input type="text" name="searchElement" style="margin-top: 20px;font-size: 20px;" size="5"><br/>
 			<input type="button" name="" value="SEARCH" class='submitStyle' style="" onclick="kickStart();">
 		</div>
+		
 
 	</form>
+	<div id='vis'></div>
+<p style="padding: 5px 20px 0px 20px;">
+For example, suppose we have an array arr[] of size n and block (to be jumped) size m. Then we search at the indexes arr[0], arr[m], arr[2m]…..arr[km] and so on. Once we find the interval (arr[km] < x < arr[(k+1)m]), we perform a linear search operation from the index km to find the element x.<br/><br/>
+
+Let’s consider the following array: (0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610). Length of the array is 16. Jump search will find the value of 55 with the following steps assuming that the block size to be jumped is 4.<br/><br/>
+STEP 1: Jump from index 0 to index 4;<br/>
+STEP 2: Jump from index 4 to index 8;<br/>
+STEP 3: Jump from index 8 to index 16;<br/>
+STEP 4: Since the element at index 16 is greater than 55 we will jump back a step to come to index 9.<br/>
+STEP 5: Perform linear search from index 9 to get the element 55.<br/><br/>This could be understand better by viewing the visualization Above.<br/><br/></p><!-- <b>*Please scroll down to the bottom to efffectively view the visualization!*</b>-->
+
+
 	<script type="text/javascript" src="./jump.js"></script>
 	<script type="text/javascript" src="./jump_c.js"></script>
 	<script type="text/javascript" src="./test.js"></script>
