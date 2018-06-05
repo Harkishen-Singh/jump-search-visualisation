@@ -3,7 +3,7 @@ class jump_c_visualisation extends JumpSearch {
     constructor(arr,l,s,time){
         super(arr,l,s,time);
         this.state = 'initial';
-        this.svg = d3.select('#testing').append('svg').attr('height','100%')
+        this.svg = d3.select('#vis').append('svg').attr('height','100%')
             .attr('width','100%');
         this.count = 0;
         this.counter = 0;this.counter2= 0;this.idssa='add';
