@@ -164,7 +164,7 @@ class JumpSearch {
         this.linesSingleShow(this.width*index,this.height,this.width*index + step*this.width);
         index = index + step;
         if (index-1 >= this.len) {}
-        if(this.singleLoopcheck==false && index>=0){
+        if(this.singleLoopcheck==false && index-1>this.bigArrIndexLast){
             setTimeout(this.loopSingleStep2.bind(this),this.time,index,step);
         }
         else{
@@ -179,7 +179,7 @@ class JumpSearch {
             this.singleLoopcheck = true;this.stopping(index);
             return true;
         }var dontEnter = false;
-        if (index-2 <0) {
+        if (index-1 <this.bigArrIndexLast) {
                 document.getElementById('status').innerHTML = 'Element Not Found!' ;dd = true;
                 this.state = false;
                 this.stopping();

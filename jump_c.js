@@ -76,6 +76,7 @@ class jump_c_visualisation extends JumpSearch {
         .style('stroke','black').attr('id',this.idss);
         this.group.append('line').attr('x1',x0).attr('y1',y0).attr('y2',y0+10).attr('x2',x000).attr('stroke-width','2')
         .style('stroke','black').attr('id',this.idss);
+        this.bigArrIndexLast = x1/this.width;
         return true;
     }
     linesSingleShow(x1,y1,x2){
