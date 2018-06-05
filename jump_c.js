@@ -1,10 +1,10 @@
 var ch2 = 0;
 class jump_c_visualisation extends JumpSearch {
-    constructor(arr,l,s){
+    constructor(arr,l,s,time){
         console.log('search2 is '+s);
-        super(arr,l,s);
+        super(arr,l,s,time);
         this.state = 'initial';
-        this.svg = d3.select('#vis').append('svg').attr('height','100%')
+        this.svg = d3.select('#testing').append('svg').attr('height','100%')
             .attr('width','100%');
         this.count = 0;
         this.counter = 0;this.counter2= 0;this.idssa='add';
@@ -29,8 +29,8 @@ class jump_c_visualisation extends JumpSearch {
         }
         if(this.count==0){
             this.count++;
-            setTimeout(this.clearSVG.bind(this),2900);
-            setTimeout(this.processes.bind(this),3000);
+            setTimeout(this.clearSVG.bind(this),(this.time));
+            setTimeout(this.processes.bind(this),this.time);
                     }
     }
     clearSVG(){
@@ -135,6 +135,9 @@ var o = new jump_c_visualisation(arr,arr.length,toBeSearch);
 o.arrayCreator();
 }*/
 function kickStart(){
+    document.getElementById('timeLapse').innerHTML = ((document.getElementById('timeShow').value)/1000).toString() + ' secs';
+    var times = document.forms['askingArray']['time_speed'].value;
+    console.log('Speed : '+times);
     var value = document.forms['askingArray']['inputElements'].value;
     console.log(value)
     var b = value.split(',');
@@ -144,7 +147,7 @@ function kickStart(){
     }
     console.log('The entered values are : '+ arr);
     var toBeSearch = parseInt(document.forms['askingArray']['searchElement'].value);
-var o = new jump_c_visualisation(arr,arr.length,toBeSearch);
+var o = new jump_c_visualisation(arr,arr.length,toBeSearch,times);
 o.arrayCreator();
 }
 

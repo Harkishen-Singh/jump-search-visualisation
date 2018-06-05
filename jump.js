@@ -1,7 +1,7 @@
 
 var ch=1;
 class JumpSearch {
-    constructor(arr,l,x){
+    constructor(arr,l,x,t){
         this.array = arr;
         this.len = l;
         this.search = x;
@@ -12,6 +12,7 @@ class JumpSearch {
         //this.processes();
         console.log('search is '+this.search);this.universalIndex = 0;
         this.singleLoopcheck=false;
+        this.time = t;
     }
     
     processes(){
@@ -118,7 +119,7 @@ class JumpSearch {
             this.clearSVGLines();
             var aa = this.linesShow(this.width*index,this.height,this.width*index + this.shifts*this.width);
             if(ch <= this.checksEfficiency){
-                setTimeout(this.loopRun.bind(this),2000, this.present, this.shifts);ch++;console.log('works!')
+                setTimeout(this.loopRun.bind(this),this.time, this.present, this.shifts);ch++;console.log('works!')
             }
             else{
                 this.group.append('text').text('Reached Last').attr('x',this.width*index)
@@ -164,7 +165,7 @@ class JumpSearch {
         console.log('index is '+index);
         if (index-1 >= this.len) {console.log('Single Step2 exceeded length');}
         if(this.singleLoopcheck==false){
-            setTimeout(this.loopSingleStep2.bind(this),2000,index,step);
+            setTimeout(this.loopSingleStep2.bind(this),this.time,index,step);
         }
     }
     loopSingleStep(index,step){
@@ -183,7 +184,7 @@ class JumpSearch {
         if(this.singleLoopcheck==false && dontEnter==false){
             this.clearSVGSubLines();
             this.linesSingleShow(this.width*index,this.height,this.width*index + step*this.width);index = index + step;
-            setTimeout(this.loopSingleStep.bind(this),2000,index,step);
+            setTimeout(this.loopSingleStep.bind(this),this.time,index,step);
         }
 
     }
