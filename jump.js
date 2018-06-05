@@ -10,9 +10,10 @@ class JumpSearch {
         this.height = 50;//rect height
         this.id_arrayNumbers = 0;this.present=0;this.idss='aa';
         //this.processes();
-        console.log('search is '+this.search);this.universalIndex = 0;
+        this.universalIndex = 0;
         this.singleLoopcheck=false;
-        this.time = t;
+        this.time = t;this.state = true;
+        this.bigArrIndexLast = 0;
     }
     
     processes(){
@@ -20,11 +21,10 @@ class JumpSearch {
          this.checksEfficiency = this.len / this.shifts ;
          var check = this.isSorted(this.array);
          if (check == false) {
-            console.log('Not sorted! sorting now...');
             this.sorter(this.array);
             cc=this.jumps();
          }
-         console.log(this.array);
+         
          if (this.position>=0) 
             console.log("Element found at index : "+this.position);
          else
@@ -97,7 +97,7 @@ class JumpSearch {
         
         if (this.search==this.array[index-1]) {
             this.position = index-1;
-            console.log('ELEMENT FOUND at '+this.position );
+            console.log(' FOUND at '+this.position );
             this.stopping(this.position+1)
 
             return this.position;
@@ -113,7 +113,6 @@ class JumpSearch {
             console.log('this.present is : ********** '+this.present +' and array ' + this.array[this.present-1] + ' search '+this.search);
             if (this.array[this.present-5]>this.search) {
                 this.loopSingleStep(index,-1);
-                console.log('present exceeded search');
             }
             else{
             this.clearSVGLines();
@@ -146,45 +145,57 @@ class JumpSearch {
         }
     }
     stopping(i){
-        this.group.append('rect').attr('width',this.width+20).attr('height',this.height+20)
-            .attr('x',this.width*(i-1)-10).attr('y',this.height-10).attr('fill','none')
-            .attr('stroke','orange').attr('stroke-width','4');
+        if(this.state==true){
+            this.group.append('rect').attr('width',this.width+20).attr('height',this.height+20)
+                .attr('x',this.width*(i-1)-10).attr('y',this.height-10).attr('fill','none')
+                .attr('stroke','orange').attr('stroke-width','4');
+            document.getElementById('status').innerHTML = 'Found!'
+        }
         exit;
     }
     loopSingleStep2(index,step){
         console.log('Entered loop22')
         if (this.array[index-1]==this.search) {
-            this.position = index-1;
-            console.log('ELEMENT FOUND PART 2 '+this.position);
+            this.position = index-1;this.state = true;
             this.singleLoopcheck = true;this.stopping(index);
             return true;
         }
         this.clearSVGSubLines();
         this.linesSingleShow(this.width*index,this.height,this.width*index + step*this.width);
         index = index + step;
-        console.log('index is '+index);
-        if (index-1 >= this.len) {console.log('Single Step2 exceeded length');}
-        if(this.singleLoopcheck==false){
+        if (index-1 >= this.len) {}
+        if(this.singleLoopcheck==false && index>=0){
             setTimeout(this.loopSingleStep2.bind(this),this.time,index,step);
+        }
+        else{
+            document.getElementById('status').innerHTML = 'Not Found';
+            this.stopping();
         }
     }
     loopSingleStep(index,step){
+        let dd = false;
         if (this.array[index-1]==this.search) {
-            this.position = index-1;
-            console.log('ELEMENT FOUND PART 2 '+this.position);
+            this.position = index-1;this.state=true;
             this.singleLoopcheck = true;this.stopping(index);
             return true;
         }var dontEnter = false;
-        if (index == this.len) {
-            console.log('Single Step exceeded length');  this.loopSingleStep2(index,-1);
+        if (index-2 <0) {
+                document.getElementById('status').innerHTML = 'Element Not Found!' ;dd = true;
+                this.state = false;
+                this.stopping();
+            }
+        
+        if (index == this.len) {this.loopSingleStep2(index,-1);
             dontEnter=true;
         }
         
-        
-        if(this.singleLoopcheck==false && dontEnter==false){
+        if(this.singleLoopcheck==false && dontEnter==false && dd == false){
+            
             this.clearSVGSubLines();
-            this.linesSingleShow(this.width*index,this.height,this.width*index + step*this.width);index = index + step;
-            setTimeout(this.loopSingleStep.bind(this),this.time,index,step);
+            if (dd==false){
+                this.linesSingleShow(this.width*index,this.height,this.width*index + step*this.width);index = index + step;
+                setTimeout(this.loopSingleStep.bind(this),this.time,index,step);
+            }  
         }
 
     }

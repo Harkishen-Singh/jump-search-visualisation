@@ -16,8 +16,8 @@
 	<form name="askingArray" style="margin-left: 20px;">
 		<div class='ask'>
 			Elements seperated with (',') : ( Eg: 34,54,23,45,23,12,76,1,999 ) <input type="text" name="inputElements" maxlength="100" size="90" style="font-size: 20px;" /> 
-		</div>
-		Speed : <input id='timeShow' type="range" name="time_speed" step="500" min="500" max="4000" value="2000" /> 0 to 4 secs ( default = 2 secs )
+		</div><br/>
+		Speed : <input id='timeShow' type="range" name="time_speed" step="500" min="500" max="4000" value="2000" /> 0.5 to 4 secs ( default = 2 secs )
 		<h5 id='timeLapse'></h5>
 		<script type="text/javascript">
 		</script>
@@ -30,7 +30,9 @@
 		
 
 	</form>
+<p>Status : <span id='status' style="font-weight: bolder;"></span></p>
 	<div id='vis'></div>
+
 <p style="padding: 5px 20px 0px 20px;">
 For example, suppose we have an array arr[] of size n and block (to be jumped) size m. Then we search at the indexes arr[0], arr[m], arr[2m]…..arr[km] and so on. Once we find the interval (arr[km] < x < arr[(k+1)m]), we perform a linear search operation from the index km to find the element x.<br/><br/>
 
@@ -45,5 +47,6 @@ STEP 5: Perform linear search from index 9 to get the element 55.<br/><br/>This 
 	<script type="text/javascript" src="./jump.js"></script>
 	<script type="text/javascript" src="./jump_c.js"></script>
 	<script type="text/javascript" src="./test.js"></script>
+
 </body>
 </html>
