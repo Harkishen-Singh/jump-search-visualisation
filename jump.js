@@ -97,8 +97,9 @@ class JumpSearch {
         
         if (this.search==this.array[index-1]) {
             this.position = index-1;
+            document.getElementById('status').innerHTML = 'Found!';
             console.log(' FOUND at '+this.position );
-            this.stopping(this.position+1)
+            this.stopping(index)
 
             return this.position;
         }
@@ -185,7 +186,7 @@ class JumpSearch {
                 this.stopping();
             }
         
-        if (index == this.len) {this.loopSingleStep2(index,-1);
+        if (index == this.len || this.array[index] > this.search) {this.loopSingleStep2(index,-1);
             dontEnter=true;
         }
         
